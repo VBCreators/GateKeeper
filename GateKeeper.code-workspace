@@ -1,7 +1,9 @@
 {
 	"folders": [
 		{
-			"path": "."
+			"path": ".",
+			"python.defaultInterpreterPath": "d:\\VS Code\\GAteKeeper\\.venv\\Scripts\\python.exe"
+
 		}
 	],
 	"settings": {}
