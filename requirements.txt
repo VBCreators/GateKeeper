@@ -1,0 +1,15 @@
+confluent-kafka --only-binary :all:
+pydantic
+pydantic-settings
+rocksdict
+orjson
+joserfc
+authlib 
+fastavro 
+jsonschema
+jsonlines
+jsonpath-ng
+cachetools
+requests
+protobuf
+quixstreams
