@@ -1,6 +1,7 @@
 from sqlalchemy import create_engine, text
 from dotenv import load_dotenv
 from db_sql_direct_exec import sql_create_query_executor as sql_create
+from db_sql_direct_exec import sql_select_query_executor as sql_select
 from db_sql_direct_exec import sql_insert_query_executor as sql_insert
 
 import os
@@ -29,7 +30,6 @@ with engine.connect() as conn:
             )
             """)
     result = sql_create(conn, create_table_query)
-    conn.commit()
     print(result)
 
     # Insert data query
@@ -37,10 +37,16 @@ with engine.connect() as conn:
             INSERT INTO users (name, email) VALUES (:name, :email)
             """)
     insert_query_values = [
-        {"name": "Alice", "email": "alice@example.com"},
-        {"name": "Bob", "email": "bob@example.com"},
+        {"name": "rahul", "email": "rahul@example.com"},
+        {"name": "rohan", "email": "rohan@example.com"},
     ]
 
     result = sql_insert(conn, insert_query_columns, insert_query_values)
+    print(result)
 
+    # Select data query
+    select_query = text("""
+            SELECT * FROM users
+            """)
+    result = sql_select(conn, select_query)
     print(result)
