@@ -1,6 +1,8 @@
 from sqlalchemy import create_engine, text
 from dotenv import load_dotenv
-from db_sql_direct_exec import sql_query_executor as sql_exec
+from db_sql_direct_exec import sql_create_query_executor as sql_create
+from db_sql_direct_exec import sql_insert_query_executor as sql_insert
+
 import os
 
 load_dotenv()
@@ -26,13 +28,19 @@ with engine.connect() as conn:
             email VARCHAR(100) UNIQUE
             )
             """)
-    result = sql_exec(conn, create_table_query)
+    result = sql_create(conn, create_table_query)
     conn.commit()
     print(result)
 
-    # #Insert data query
-    # insert_data_query = """
-    #         INSERT INTO users (name, email) VALUES ('John Doe', 'john.doe@example.com')
-    #         """
-    # result = sql_exec(conn, insert_data_query)
-    # print(result)
+    # Insert data query
+    insert_query_columns = text("""
+            INSERT INTO users (name, email) VALUES (:name, :email)
+            """)
+    insert_query_values = [
+        {"name": "Alice", "email": "alice@example.com"},
+        {"name": "Bob", "email": "bob@example.com"},
+    ]
+
+    result = sql_insert(conn, insert_query_columns, insert_query_values)
+
+    print(result)
