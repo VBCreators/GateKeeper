@@ -35,11 +35,10 @@ def sql_select_query_executor(conn, query):
     try:
         result = conn.execute(query)
         if result.returns_rows:
-            conn.commit()
             return result.fetchall()
         else:
-            conn.commit()
             return "Query executed successfully but no rows returned."
     except Exception as e:
         print(f"Error occurred: {e}")
         return None
+    

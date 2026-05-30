@@ -20,6 +20,9 @@ engine = create_engine(
     f"postgresql+psycopg2://{username}:{password}@{host}:{port}/{database}", echo=True
 )
 with engine.connect() as conn:
-    test_create(conn)
-    test_insert(conn)
-    test_select(conn)
+    # test_create(conn)
+    # test_insert(conn)
+    # test_select(conn)
+    
+
+
